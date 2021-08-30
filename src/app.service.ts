@@ -12,18 +12,25 @@ export class AppService {
     bodyText: string,
     date: string,
     schedulerRegistry: SchedulerRegistry,
+    token: string,
   ) {
     if (email && appId && date) {
       const job = new CronJob(new Date(date), async () => {
         console.log(`time (${email}) for job ${email} to run!`);
-        const res = await axios.post('https://api.adalo.com/notifications', {
-          appId: appId,
-          audience: { email: email },
-          notification: {
-            titleText: titleText,
-            bodyText: bodyText,
+        const res = await axios.post(
+          'https://api.adalo.com/notifications',
+          {
+            appId: appId,
+            audience: { email: email },
+            notification: {
+              titleText: titleText,
+              bodyText: bodyText,
+            },
           },
-        });
+          {
+            headers: { Authorization: `Bearer: ${token}` },
+          },
+        );
         console.log('Adalo res:', res);
       });
 

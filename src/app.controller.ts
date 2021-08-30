@@ -19,6 +19,7 @@ export class AppController {
       email: string;
       titleText: string;
       bodyText: string;
+      token: string;
     },
   ): any {
     console.log(`body`, body);
@@ -29,6 +30,7 @@ export class AppController {
       body.bodyText,
       body.date,
       this.schedulerRegistry,
+      body.token,
     );
   }
 }
