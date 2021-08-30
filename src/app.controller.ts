@@ -1,5 +1,5 @@
 import { Post } from '@nestjs/common';
-import { Body, Controller, Get } from '@nestjs/common';
+import { Body, Controller } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { AppService } from './app.service';
 

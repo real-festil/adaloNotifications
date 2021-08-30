@@ -28,7 +28,9 @@ export class AppService {
             },
           },
           {
-            headers: { Authorization: `Bearer: ${token}` },
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
         );
         console.log('Adalo res:', res);
@@ -39,7 +41,9 @@ export class AppService {
       console.log(
         `job ${email + JSON.stringify(date)} added for ${date} date!`,
       );
-      console.log(`jobs list: ${schedulerRegistry.getCronJobs()}`);
+      console.log(
+        `jobs list: ${JSON.stringify(schedulerRegistry.getCronJobs())}`,
+      );
     }
   }
 }
