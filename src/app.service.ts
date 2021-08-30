@@ -5,7 +5,7 @@ import { CronJob } from 'cron';
 
 @Injectable()
 export class AppService {
-  createNotification(
+  async createNotification(
     appId: string,
     email: string,
     titleText: string,
@@ -14,9 +14,9 @@ export class AppService {
     schedulerRegistry: SchedulerRegistry,
   ) {
     if (email && appId && date) {
-      const job = new CronJob(new Date(date), () => {
+      const job = new CronJob(new Date(date), async () => {
         console.log(`time (${email}) for job ${email} to run!`);
-        axios.post('https://api.adalo.com/notifications', {
+        const res = await axios.post('https://api.adalo.com/notifications', {
           appId: appId,
           audience: { email: email },
           notification: {
@@ -24,6 +24,7 @@ export class AppService {
             bodyText: bodyText,
           },
         });
+        console.log('Adalo res:', res);
       });
 
       schedulerRegistry.addCronJob(email + JSON.stringify(date), job);
@@ -31,6 +32,7 @@ export class AppService {
       console.log(
         `job ${email + JSON.stringify(date)} added for ${date} date!`,
       );
+      console.log(`jobs list: ${schedulerRegistry.getCronJobs()}`);
     }
   }
 }
