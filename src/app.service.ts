@@ -67,7 +67,7 @@ export class AppService implements OnModuleInit {
           notification.token,
         );
       } else {
-        await this.notificationsRepository.delete(notification.date);
+        await this.notificationsRepository.remove(notification);
       }
     });
   }
