@@ -113,8 +113,8 @@ export class AppService implements OnModuleInit {
         appId: 'a35caf30-d872-4178-81ee-69c9d4195a75',
         audience: { email: accountId },
         notification: {
-          titleText: `Успешная оплата!`,
-          bodyText: `Оплата ${amount} ${currency} прошла успешно!`,
+          titleText: `Оплата ${amount} руб прошла успешно!`,
+          bodyText: `Ваш тариф продлен еще на месяц.`,
         },
       },
       {
@@ -156,7 +156,7 @@ export class AppService implements OnModuleInit {
         audience: { email: accountId },
         notification: {
           titleText: 'Ошибка оплаты',
-          bodyText: 'Во время процесса оплаты что-то пошло не так',
+          bodyText: 'Ежемесячное списание денег за ваш тариф не удалось',
         },
       },
       {
