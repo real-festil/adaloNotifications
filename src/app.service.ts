@@ -101,4 +101,28 @@ export class AppService implements OnModuleInit {
       );
     }
   }
+
+  async createPayNotification(accountId: string) {
+    return await axios.post(
+      'https://api.adalo.com/notifications',
+      {
+        appId: 'a35caf30-d872-4178-81ee-69c9d4195a75',
+        audience: { email: accountId },
+        notification: {
+          titleText: 'Успешная оплата!',
+          bodyText: 'Оплата прошла успешно!',
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ers5u9uvg4mln8qr6icacwy4q`,
+        },
+      },
+    );
+  }
 }
+
+//appId: a35caf30-d872-4178-81ee-69c9d4195a75
+//token: ers5u9uvg4mln8qr6icacwy4q
+
+//email 79372708789@mani-kur.ru

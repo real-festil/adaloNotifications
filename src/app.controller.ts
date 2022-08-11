@@ -10,6 +10,18 @@ export class AppController {
     private schedulerRegistry: SchedulerRegistry,
   ) {}
 
+  @Post('/pay')
+  payNotification(
+    @Body()
+    body: {
+      AccountId: string;
+    },
+  ): any {
+    console.log(`body`, body);
+
+    return this.appService.createPayNotification(body.AccountId);
+  }
+
   @Post()
   createNotification(
     @Body()
