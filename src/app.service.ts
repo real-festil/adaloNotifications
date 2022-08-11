@@ -102,15 +102,61 @@ export class AppService implements OnModuleInit {
     }
   }
 
-  async createPayNotification(accountId: string) {
+  async createPayNotification(
+    accountId: string,
+    amount: string,
+    currency: string,
+  ) {
     return await axios.post(
       'https://api.adalo.com/notifications',
       {
         appId: 'a35caf30-d872-4178-81ee-69c9d4195a75',
         audience: { email: accountId },
         notification: {
-          titleText: 'Успешная оплата!',
-          bodyText: 'Оплата прошла успешно!',
+          titleText: `Успешная оплата!`,
+          bodyText: `Оплата ${amount} ${currency} прошла успешно!`,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ers5u9uvg4mln8qr6icacwy4q`,
+        },
+      },
+    );
+  }
+
+  async createRecNotification(
+    accountId: string,
+    amount: string,
+    currency: string,
+  ) {
+    return await axios.post(
+      'https://api.adalo.com/notifications',
+      {
+        appId: 'a35caf30-d872-4178-81ee-69c9d4195a75',
+        audience: { email: accountId },
+        notification: {
+          titleText: `Успешная рекуррентная оплата!`,
+          bodyText: `Оплата ${amount} ${currency} прошла успешно!`,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ers5u9uvg4mln8qr6icacwy4q`,
+        },
+      },
+    );
+  }
+
+  async createFailNotification(accountId: string) {
+    return await axios.post(
+      'https://api.adalo.com/notifications',
+      {
+        appId: 'a35caf30-d872-4178-81ee-69c9d4195a75',
+        audience: { email: accountId },
+        notification: {
+          titleText: 'Ошибка оплаты',
+          bodyText: 'Во время процесса оплаты что-то пошло не так',
         },
       },
       {

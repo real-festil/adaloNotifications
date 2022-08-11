@@ -15,11 +15,47 @@ export class AppController {
     @Body()
     body: {
       AccountId: string;
+      Amount: string;
+      Currency: string;
     },
   ): any {
     console.log(`body`, body);
 
-    return this.appService.createPayNotification(body.AccountId);
+    return this.appService.createPayNotification(
+      body.AccountId,
+      body.Amount,
+      body.Currency,
+    );
+  }
+
+  @Post('/rec')
+  recNotification(
+    @Body()
+    body: {
+      AccountId: string;
+      Amount: string;
+      Currency: string;
+    },
+  ): any {
+    console.log(`body`, body);
+
+    return this.appService.createRecNotification(
+      body.AccountId,
+      body.Amount,
+      body.Currency,
+    );
+  }
+
+  @Post('/fail')
+  failNotification(
+    @Body()
+    body: {
+      AccountId: string;
+    },
+  ): any {
+    console.log(`body`, body);
+
+    return this.appService.createFailNotification(body.AccountId);
   }
 
   @Post()
